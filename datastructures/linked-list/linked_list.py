@@ -12,7 +12,8 @@ class Node(object):
 
     def __repr__(self):
         return "Node(val=" + str(self.data) + ", next={" + str(self.next) + "})"
-    
+
+
 class LinkedList(object):
 
     def __init__(self) -> None:
@@ -22,7 +23,7 @@ class LinkedList(object):
     def prepend(self, data) -> Node:
         if data is None:
             return None
-        
+
         node = Node(data)
         if None == self.dummy_head.next:
             self.dummy_head.next = node
@@ -30,26 +31,26 @@ class LinkedList(object):
             next = self.dummy_head.next
             self.dummy_head.next = node
             node.next = next
-        
+
         return node
-        
+
     def append(self, data) -> Node:
         if data is None:
             return None
-        
+
         node = Node(data)
 
         curr_node = self.dummy_head
         while curr_node.next:
             curr_node = curr_node.next
-        
+
         curr_node.next = node
         return node
 
     def find(self, data) -> Node:
         if None == data:
             return None
-        
+
         node = self.dummy_head.next
         while node:
             if data == node.data:
@@ -59,13 +60,13 @@ class LinkedList(object):
     def delete(self, data) -> bool:
         if None == data:
             return False
-        
+
         prev_node = self.dummy_head
         curr_node = self.dummy_head.next
 
         if None == curr_node:
             return False
-        
+
         while curr_node:
             if data == curr_node.data:
                 prev_node.next = curr_node.next
@@ -82,7 +83,7 @@ class LinkedList(object):
             data.append(node.data)
             node = node.next
         return data
-    
+
     def __len__(self):
         counter = 0
         node = self.dummy_head.next
@@ -93,6 +94,7 @@ class LinkedList(object):
 
     def __repr__(self):
         return "LinkedList(" + str(self.dummy_head.next) + ")"
+
 
 if __name__ == '__main__':
 

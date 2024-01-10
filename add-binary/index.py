@@ -28,17 +28,19 @@ Binary Addition
 1 + 1 + 1 = 3 = 1 1 in binary = 2x1 + 1
 
 """
+
+
 class Solution:
     def addBinary(self, a: str, b: str) -> str:
         # traverse strings right to left
         i = len(a) - 1
         j = len(b) - 1
         carry = 0
-        
+
         result = ""
-        while(i>=0 or j>=0 or carry==1):
+        while (i >= 0 or j >= 0 or carry == 1):
             # ensure we take carry
-            
+
             if i >= 0:
                 carry += int(a[i])
                 i -= 1
@@ -50,12 +52,13 @@ class Solution:
             result = str(carry % 2) + result
             # carry over sum divided by two
             carry //= 2
-        
+
         return result
 
+
 # 100
-print(Solution().addBinary("11","1"))
+print(Solution().addBinary("11", "1"))
 # 11100
-print(Solution().addBinary("1111","1101"))
+print(Solution().addBinary("1111", "1101"))
 # 10101
-print(Solution().addBinary("1010","1011"))
+print(Solution().addBinary("1010", "1011"))

@@ -14,7 +14,8 @@ class Node:
 
     # def __str__(self) -> str:
     #     return f"{self.key}={self.value} ({self.count})"
-    
+
+
 class DoublyLinkedList:
     size = 0
     tail = None
@@ -31,28 +32,28 @@ class DoublyLinkedList:
         node.prev = self.tail
         self.tail = node
         self.size += 1
-    
+
     def remove(self, node: Node = None) -> Node:
         if 0 == self.size:
             return None
-        
+
         if not node:
             node = self.dummy_head.next
-        
+
         node.prev.next = node.next
         if node.next:
             node.next.prev = node.prev
-        
-        #update tail in case node is tail
+
+        # update tail in case node is tail
         if node == self.tail:
             self.tail = self.tail.prev
 
         self.size -= 1
         return node
 
-    def __len__(self) -> int :
+    def __len__(self) -> int:
         return self.size
-    
+
 
 class LRUCache:
 
@@ -60,8 +61,8 @@ class LRUCache:
         self.capacity = capacity
         self.node_map = {}
         self.node_list = DoublyLinkedList()
-        self.head = Node(0,0)
-        self.tail = Node(0,0)
+        self.head = Node(0, 0)
+        self.tail = Node(0, 0)
         self.head.next = self.tail
         self.tail.prev = self.head
         pass
@@ -75,10 +76,10 @@ class LRUCache:
             self.node_list.insert(node)
             return node.value
         return None
-    
+
     def _manage_capacity(self):
         # limit capacity by removing the least recently used
-        while(len(self.node_list) > self.capacity):
+        while (len(self.node_list) > self.capacity):
             # least recently used is at the top
             node = self.node_list.dummy_head.next
 
@@ -97,10 +98,11 @@ class LRUCache:
             self.node_map[key] = node
 
         self._manage_capacity()
-        
+
+
 cache = LRUCache(2)
 
-cache.put("a", {"x":"y"})
+cache.put("a", {"x": "y"})
 cache.put("fish", "bowl")
 for n in range(10):
     cache.get("a")

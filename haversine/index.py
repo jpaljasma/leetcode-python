@@ -1,24 +1,25 @@
 from math import radians, cos, sin, asin, sqrt
 
+
 def haversine(lon1: float, lat1: float, lon2: float, lat2: float) -> float:
+    """
+    Calculates the great circle distance in kilometers between two points 
+    on the earth (specified in decimal degrees)
+    """
 
     # Radius of earth in kilometers. Use 3956 for miles. Determines return value units.
     _r_miles = 3956
     _r_kilometers = 6371
 
-    """
-    Calculate the great circle distance in kilometers between two points 
-    on the earth (specified in decimal degrees)
-    """
-    # convert decimal degrees to radians 
+    # convert decimal degrees to radians
     lon1, lat1, lon2, lat2 = map(radians, [lon1, lat1, lon2, lat2])
 
     # haversine formula
-    # logitude delta 
-    dlon = lon2 - lon1 
+    # logitude delta
+    dlon = lon2 - lon1
     # latitude delta
-    dlat = lat2 - lat1 
-    # formula 
+    dlat = lat2 - lat1
+    # formula
     a = sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlon/2)**2
     c = 2 * asin(sqrt(a))
 

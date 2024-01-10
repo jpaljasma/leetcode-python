@@ -1,6 +1,7 @@
 import unittest
 from linked_list import LinkedList, Node
 
+
 class TestLinkedList(unittest.TestCase):
 
     def test_prepend(self):
@@ -15,7 +16,7 @@ class TestLinkedList(unittest.TestCase):
 
     def test_find(self):
         ll = LinkedList()
-        
+
         self.assertIsNone(ll.find(3))
         self.assertIsNone(ll.find(None))
 
@@ -37,7 +38,7 @@ class TestLinkedList(unittest.TestCase):
         ll.append("fish")
         ll.prepend(9)
         self.assertEqual(4, len(ll))
-        
+
         self.assertTrue(ll.delete(3))
         self.assertEqual(ll.get_all_data(), [9, 2, 'fish'])
 

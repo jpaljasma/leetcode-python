@@ -3,10 +3,12 @@
 
 bad_version = 0
 
+
 def isBadVersion(version: int) -> bool:
     print(f"isBadVersion({version})")
     return version >= bad_version
-    
+
+
 class Solution:
     def firstBadVersion(self, n: int) -> int:
         l = 1
@@ -32,7 +34,8 @@ class Solution:
                     # keep searching from right
                     l = m + 1
         return found_bad
-    
+
+
 bad_version = 19
 print(Solution().firstBadVersion(11324))
 

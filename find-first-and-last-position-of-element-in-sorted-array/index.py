@@ -8,6 +8,8 @@ If target is not found in the array, return [-1, -1].
 You must write an algorithm with O(log n) runtime complexity. (like binary search through phone book)
 https://stackoverflow.com/questions/2307283/what-does-olog-n-mean-exactly 
 """
+
+
 class Solution:
 
     def searchRange(self, nums: List[int], target: int) -> List[int]:
@@ -44,7 +46,7 @@ class Solution:
         def findlast(x, from_index):
             if from_index < 0:
                 return -1
-            
+
             r = from_index
             for i in range(from_index, len(nums)):
                 if nums[i] > x:
@@ -57,11 +59,12 @@ class Solution:
         Space Complexity: O(1)
         """
         first = binarysearch(target)
-        
+
         if first == len(nums) or nums[first] != target:
             return [-1, -1]
         else:
-            return [first, binarysearch(target + 1) -1]
+            return [first, binarysearch(target + 1) - 1]
 
-print(Solution().searchRange([5,7,7,8,8,10], 8))
-print(Solution().searchRange([5,7,7,8,9,11,13,15], 9))
+
+print(Solution().searchRange([5, 7, 7, 8, 8, 10], 8))
+print(Solution().searchRange([5, 7, 7, 8, 9, 11, 13, 15], 9))
