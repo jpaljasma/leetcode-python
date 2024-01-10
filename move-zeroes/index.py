@@ -1,5 +1,6 @@
 from typing import List
 
+
 class Solution:
     def moveZeroes(self, nums: List[int]) -> None:
         """
@@ -24,10 +25,11 @@ class Solution:
         for i in range(j_ptr, n_len):
             nums[i] = 0
 
-arr = [0,1,0,3,12]
+
+arr = [0, 1, 0, 3, 12]
 Solution().moveZeroes(arr)
 print(arr)
 
-arr = [0,0,0,0]
+arr = [0, 0, 0, 0]
 Solution().moveZeroes(arr)
 print(arr)

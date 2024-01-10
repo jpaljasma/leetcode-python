@@ -10,6 +10,7 @@ Output: 4
 https://leetcode.com/problems/single-number/description/
 """
 
+
 class Solution:
 
     def singleNumber(self, nums: List[int]) -> int:
@@ -23,7 +24,7 @@ class Solution:
         for num in nums:
             final ^= num
         return final
-    
+
     def singleNumberLinear(self, nums: List[int]) -> int:
         """
         Great, linear implementation, but there's a faster way using XOR
@@ -34,11 +35,12 @@ class Solution:
             found[nums[i]] += 1
 
         num_found = -1
-        
+
         for k in found:
             if found[k] < 2:
                 num_found = int(k)
                 break
         return num_found
-    
-print(Solution().singleNumber([4,1,2,1,2]))
+
+
+print(Solution().singleNumber([4, 1, 2, 1, 2]))

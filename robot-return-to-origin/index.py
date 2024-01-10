@@ -16,18 +16,18 @@ Note: The way that the robot is "facing" is irrelevant.
 Also, assume that the magnitude of the robot's movement is the same for each move.
 """
 
+
 class Solution:
     def judgeCircle(self, moves: str) -> bool:
-
         """
         Much faster
         return moves.count("L") == moves.count("R") and moves.count("U") == moves.count("D")
         """
-        
+
         """
         Fast and linear
         """
-        coords = [0,0]
+        coords = [0, 0]
         for move in moves:
             if "U" == move:
                 # move Y upward
@@ -42,6 +42,7 @@ class Solution:
                 # increase X coord
                 coords[0] += 1
 
-        return [0,0] == coords
-    
+        return [0, 0] == coords
+
+
 print(Solution().judgeCircle("RRDD"))

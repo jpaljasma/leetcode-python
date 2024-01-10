@@ -1,8 +1,9 @@
 from typing import List
 
+
 class TrieNode:
 
-    def __init__(self, char:str) -> None:
+    def __init__(self, char: str) -> None:
         # the character stored in this node
         self.char = char
 
@@ -37,7 +38,7 @@ class Trie(object):
         """
         self.root = TrieNode("")
 
-    def insert(self, word:str):
+    def insert(self, word: str):
         node = self.root
 
         # Loop through each character in the word
@@ -58,7 +59,7 @@ class Trie(object):
         # Increment the counter to indicate that we see this word once more
         node.counter += 1
 
-    def track(self, query:str, word:str):
+    def track(self, query: str, word: str):
         """Store the top word(s) under the query """
         node = self.root
 
@@ -68,7 +69,7 @@ class Trie(object):
                 node = node.children[char]
             else:
                 raise Exception()
-        
+
         # store top searches
         node.top_searches.append(word)
 
@@ -77,7 +78,8 @@ class Trie(object):
             node.counter += 1
 
         pass
-    def query(self, q: str, limit = 5) -> str:
+
+    def query(self, q: str, limit=5) -> str:
         """Given an input (a prefix), retrieve all words stored in
         the trie with that prefix, sort the words by the number of 
         times they have been inserted
@@ -97,7 +99,6 @@ class Trie(object):
         # Traverse the trie to get all candidates
         self.dfs(node, q[:-1])
 
-        
         # rank with top searches
         ranked = {}
         for item in self.output:
@@ -110,10 +111,10 @@ class Trie(object):
 
         # Sort the results in reverse order and return
         return sorted(self.output, key=lambda x: x[1], reverse=True)[:limit]
-    
+
     def dfs(self, node: TrieNode, prefix):
         """Depth-first traversal of the trie
-        
+
         Args:
             - node: the node to start with
             - prefix: the current prefix, for tracing a
@@ -128,6 +129,7 @@ class Trie(object):
 
         for child in node.children.values():
             self.dfs(child, prefix + node.char)
+
 
 t = Trie()
 

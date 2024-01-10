@@ -1,8 +1,10 @@
 from typing import List
 from collections import deque
 
+
 class PersonNode:
     """ Each Vertex is represented by a PersonNode which maintains a dictionary of friends """
+
     def __init__(self, node_id: int, name: str) -> None:
         self.friends = {}
         self.id = node_id
@@ -11,17 +13,18 @@ class PersonNode:
 
     def __str__(self) -> str:
         return f"({self.id}){self.name}"
-    
+
     def friendWith(self, who: 'PersonNode'):
         self.friends[who.id] = who
         who.friends[self.id] = self
+
 
 def bidireaction_search(left_node_start: PersonNode, right_node_start: PersonNode, max_depth: int = 2):
     if left_node_start == right_node_start:
         """ We found the match - its yourself """
         return left_node_start
-    
-    # use python's collection.deque 
+
+    # use python's collection.deque
     left_queue, right_queue = deque(), deque()
     left_visited, right_visited = set(), set()
 
@@ -36,34 +39,38 @@ def bidireaction_search(left_node_start: PersonNode, right_node_start: PersonNod
     # iterate on one level of the graph on both the forward and backward searches
     while depth < max_depth:
 
-        left_node, right_node = check_neighbors(left_queue, left_visited, right_visited)
+        left_node, right_node = check_neighbors(
+            left_queue, left_visited, right_visited)
         if left_node:
             return construct_shortest_path(left_node, right_node)
-        
-        right_node, left_node = check_neighbors(right_queue, right_visited, left_visited)
+
+        right_node, left_node = check_neighbors(
+            right_queue, right_visited, left_visited)
         if left_node:
             return construct_shortest_path(left_node, right_node)
-        
+
         depth += 1
 
     return None
 
-def check_neighbors( neighbors_queue: deque, visited: set, visited_opposite: set):
+
+def check_neighbors(neighbors_queue: deque, visited: set, visited_opposite: set):
     num_neighbors_in_level = len(neighbors_queue)
 
     for _ in range(num_neighbors_in_level):
         node = neighbors_queue.popleft()
         for neighbor_node in node.friends.values():
-            
+
             if neighbor_node in visited_opposite:
                 return node, neighbor_node
-            
+
             if neighbor_node not in visited:
                 neighbor_node.previous_node = node
                 visited.add(neighbor_node)
                 neighbors_queue.append(neighbor_node)
 
     return None, None
+
 
 def build_list(node: PersonNode):
     new_list = []
@@ -72,6 +79,7 @@ def build_list(node: PersonNode):
         node = node.previous_node
     return new_list
 
+
 def construct_shortest_path(left_node: PersonNode, right_node: PersonNode):
     a_list = build_list(left_node)
     a_list.reverse()
@@ -79,6 +87,7 @@ def construct_shortest_path(left_node: PersonNode, right_node: PersonNode):
     b_list = build_list(right_node)
 
     return a_list + b_list
+
 
 aNode = PersonNode(1, "John")
 bNode = PersonNode(2, "Jane")
