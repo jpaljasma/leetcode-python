@@ -1,4 +1,5 @@
-from typing import Optional,List
+from typing import Optional, List
+
 
 # Definition for singly-linked list.
 class ListNode:
@@ -8,10 +9,12 @@ class ListNode:
 
     def __repr__(self) -> str:
         return f"ListNode(val = {self.val}, next = {self.next})"
-    
+
+
 class Solution:
-    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
-        
+    def mergeTwoLists(
+        self, list1: Optional[ListNode], list2: Optional[ListNode]
+    ) -> Optional[ListNode]:
         cur = ListNode(None)
         head = cur
 
@@ -32,13 +35,13 @@ class Solution:
             cur.next = list2
             cur = cur.next
             list2 = list2.next
-            
+
         return head.next
 
 
 if __name__ == "__main__":
-    
-    def build_list(arr:List[int]) -> ListNode:
+
+    def build_list(arr: List[int]) -> ListNode:
         """
         Helper method to build ListNode from List
         """
@@ -49,9 +52,9 @@ if __name__ == "__main__":
             cur.next = ListNode(n)
             cur = cur.next
         return head.next
-    
-    la = build_list([1,2,3])
-    lb = build_list([1,1,5,6])
+
+    la = build_list([1, 2, 3])
+    lb = build_list([1, 1, 5, 6])
     s = Solution()
-    
-    print(s.mergeTwoLists(la,lb))
+
+    print(s.mergeTwoLists(la, lb))
