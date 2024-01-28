@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import Optional
 
 
 # Definition for a binary tree node.
@@ -38,6 +38,7 @@ class Solution:
 
     def isSymmetric(self, root: Optional[TreeNode]) -> bool:
         return self._isMirror(root.left, root.right)
+
 
 if __name__ == "__main__":
     s = Solution()
